@@ -4,6 +4,10 @@ env:
   NPM_TOKEN: ${{secrets.NPM_TOKEN}}
   CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  API_USERNAME: ${{secrets.API_USERNAME}}
+  API_PASSWORD: ${{secrets.API_PASSWORD}}
+  API_LICENSE_NUMBER: ${{secrets.API_LICENSE_NUMBER}}
+  API_ACCOUNT: ${{secrets.API_ACCOUNT}}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,13 +18,13 @@ jobs:
       with:
         node-version: '12.x'
     - name: Install dependencies
-      run: npm ci
+      run: yarn install
     - name: Lint
-      run: npm run lint
+      run: yarn lint
     - name: Unit Test
-      run: npm run test:ci
+      run: yarn test:ci
     - name: Build
-      run: npm run build
+      run: yarn build
     - name: Deploy Docs
       uses: peaceiris/actions-gh-pages@v3
       with:
