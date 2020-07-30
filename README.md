@@ -1,16 +1,17 @@
 # UPS Client API
 
 [![npm (scoped)](https://img.shields.io/npm/v/ups-js.svg)](https://www.npmjs.com/package/ups-js)
-![Build Status](https://github.com/jonyw4/melhor-envio-js/workflows/Test,%20build%20and%20deploy/badge.svg)
-[![codecov](https://codecov.io/gh/jonyw4/melhor-envio-js/branch/master/graph/badge.svg)](https://codecov.io/gh/jonyw4/melhor-envio-js)
+![Build Status](https://github.com/jonyw4/ups-js/workflows/Test,%20build%20and%20deploy/badge.svg)
+[![codecov](https://codecov.io/gh/jonyw4/ups-js/branch/master/graph/badge.svg)](https://codecov.io/gh/jonyw4/ups-js)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A JavaScript library to interface with UPS API, it works with Node.js. The [documentation can be found here](https://jonyw4.github.io/melhor-envio-js/).
+A JavaScript library to interface with UPS API, it works with Node.js. The [documentation can be found here](https://jonyw4.github.io/ups-js/).
 
 ## 🌟 Features
 This library its in **early stages**, so it doesn't have interfaces for all UPS features (Your PR is very welcome).
 
 With this library you can:
+- Create Shipment
 
 ## 📖 How to use?
 Install the library
@@ -23,6 +24,7 @@ Import the library
 import UPS from 'ups-js';
 
 const ups = new UPS(token, isSandbox, timeout);
+const response = await ups.createShipment({...});
 ```
 
 ## 📚 API Docs
