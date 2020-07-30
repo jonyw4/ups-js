@@ -240,7 +240,7 @@ export namespace Request {
           /**
            * Shipper’s six digit alphanumeric account number. Must be associated with the UserId specified in the AccessRequest. The account must be a valid UPS account number that is active. For US, PR and CA accounts, the account must be either a daily pickup account, an occasional account, or a customer B.I.N account. Drop Shipper accounts are valid for return service shipments only if the account is Trade Direct (TD) enabled. All other accounts must be either a daily pickup account or an occasional account.
            */
-          ShipperNumber: string;
+          ShipperNumber?: string;
           /**
            * Shipper’s email address.
            *
@@ -269,7 +269,7 @@ export namespace Request {
           /**
            * Shipper’s six digit alphanumeric account number. Must be associated with the UserId specified in the AccessRequest. The account must be a valid UPS account number that is active. For US, PR and CA accounts, the account must be either a daily pickup account, an occasional account, or a customer B.I.N account. Drop Shipper accounts are valid for return service shipments only if the account is Trade Direct (TD) enabled. All other accounts must be either a daily pickup account or an occasional account.
            */
-          ShipperNumber: string;
+          ShipperNumber?: string;
           /**
            * Shipper’s email address.
            *
@@ -427,7 +427,7 @@ export namespace Request {
           Description?: string;
         };
         // TODO: Finish type
-        InvoiceLineTotal: any;
+        InvoiceLineTotal?: any;
         /**
          * USPS endorsement is a Special handling for UPS SurePost shipments
          * delivered by the USPS.
@@ -612,7 +612,7 @@ export namespace Request {
           // TODO: Type
           PackageServiceOptions?: any;
           // TODO: Type
-          Commodity: any;
+          Commodity?: any;
         }>;
         ItemizedChargesRequestedIndicator: string;
         TaxInformationIndicator: string;
@@ -699,6 +699,6 @@ export namespace Request {
       };
     };
     // TODO: Type
-    ReceiptSpecification: any;
+    ReceiptSpecification?: any;
   }
 }

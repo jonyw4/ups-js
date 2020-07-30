@@ -6,7 +6,6 @@ import {
 } from '../errors';
 import { Response, Request } from '../types';
 
-const DEFAULT_VERSION = '1';
 const ENDPOINT_TEST = (v: string) => `https://wwwcie.ups.com/ship/${v}`;
 const ENDPOINT_PRODUCTION = (v: string) =>
   `https://onlinetools.ups.com/ship/${v}`;
@@ -66,6 +65,7 @@ class UPS {
       .then((response) => response.data)
       .catch((error: AxiosError<Response.ServerError>) => {
         if (error.response) {
+          console.log(error.response.data.response.errors);
           throw new UPSFetchServerError(
             error.message,
             error.config,
@@ -96,8 +96,8 @@ class UPS {
     return this.fetch<Response.CreateShipment>(
       '/shipments',
       'POST',
-      data,
       addressValidation ? { additionaladdressvalidation: 'city' } : {},
+      data,
       'v1801'
     );
   }

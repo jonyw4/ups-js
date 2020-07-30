@@ -1,4 +1,4 @@
-import { AxiosResponse, AxiosRequestConfig } from '../UPS/node_modules/axios';
+import { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 class AxiosTestError extends Error {
   config: any;

@@ -15,56 +15,64 @@ describe('UPS.fetch()', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  it('should fetch a GET request successfully from ME API', async () => {
+  it('should fetch a GET request successfully from UPS API', async () => {
     // @ts-ignore
     axios.request.mockImplementationOnce(() =>
       Promise.resolve({
-        data: { access_token: 'token123' }
+        data: { test: 'test' }
       })
     );
 
-    const me = new UPS(token, true);
-    const response = await me.fetch('/token', 'GET', {}, {});
+    const ups = new UPS('u', 'p', 'l', true);
+    const response = await ups.fetch('/token', 'GET', {}, {});
 
-    expect(response).toEqual({ access_token: 'token123' });
+    expect(response).toEqual({ test: 'test' });
     expect(axios.request).toHaveBeenCalledTimes(1);
     expect(axios.request).toHaveBeenCalledWith({
-      baseURL: 'https://sandbox.melhorenvio.com.br',
+      baseURL: 'https://wwwcie.ups.com/ship/v1',
       url: '/token',
       method: 'GET',
       data: {},
       headers: {
         Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Origin': '*',
+        AccessLicenseNumber: 'l',
+        'Content-Type': 'application/json',
+        Password: 'p',
+        Username: 'u',
+        transId: '',
+        transactionSrc: 'ups-js-client'
       },
       params: {},
-      timeout: 5000
+      timeout: 10000
     });
   });
 
-  it('should fetch an UPSOtherError from ME API', async () => {
+  it('should fetch an UPSOtherError from UPS API', async () => {
     // @ts-ignore
     axios.request.mockRejectedValue(new AxiosTestError({}));
-    const me = new UPS(token);
+    const me = new UPS('u', 'p', 'l', true);
     const fetch = me.fetch('/test', 'GET');
     await expect(fetch).rejects.toThrow(UPSFetchOtherError);
   });
 
-  it('should fetch an UPSFetchClientError from ME API', async () => {
+  it('should fetch an UPSFetchClientError from UPS API', async () => {
     // @ts-ignore
     axios.request.mockRejectedValue(new AxiosTestError({ request: {} }));
-    const me = new UPS(token);
+    const me = new UPS('u', 'p', 'l', true);
     const fetch = me.fetch('/test', 'GET');
     await expect(fetch).rejects.toThrow(UPSFetchClientError);
   });
 
-  it('should fetch an UPSFetchServerError from ME API', async () => {
+  it('should fetch an UPSFetchServerError from UPS API', async () => {
     // @ts-ignore
     axios.request.mockRejectedValue(
       new AxiosTestError({ response: { status: '404' } })
     );
-    const me = new UPS(token);
+    const me = new UPS('u', 'p', 'l', true);
     const fetch = me.fetch('/test', 'GET');
     await expect(fetch).rejects.toThrow(UPSFetchServerError);
   });
