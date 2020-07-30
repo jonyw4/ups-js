@@ -65,7 +65,6 @@ class UPS {
       .then((response) => response.data)
       .catch((error: AxiosError<Response.ServerError>) => {
         if (error.response) {
-          console.log(error.response.data.response.errors);
           throw new UPSFetchServerError(
             error.message,
             error.config,
