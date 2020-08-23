@@ -36,7 +36,7 @@
   "homepage": "https://github.com/jonyw4/ups-js#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "ts-toolbelt": "^6.13.35",
+    "ts-toolbelt": "^8.0.0",
     "universal-base64": "^2.1.0"
   },
   "devDependencies": {
